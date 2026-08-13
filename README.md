@@ -54,7 +54,7 @@ graph TD
 ---
 
 
-🚀 Quick Start Guide
+## 🚀 Quick Start Guide
 Prerequisites
 Node.js (v18+)
 
@@ -64,7 +64,7 @@ Ollama installed on your machine.
 
 
 ---
-1. Model Setup (Ollama)
+## 1. Model Setup (Ollama)
 Ensure Ollama is running and pull the recommended model:
 
 Bash
@@ -72,7 +72,7 @@ ollama pull qwen2.5-coder:7b
 # OR
 ollama pull llama3.1:8b
 ---
-2. Backend Setup
+## 2. Backend Setup
 
 
 # Navigate to backend directory
