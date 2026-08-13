@@ -1,146 +1,109 @@
-# 🚀 Server Infrastructure Architect Consultant AI
+# 🖥️ Server Infrastructure Architect Consultant
+### منصة استشارات وتصميم البنية التحتية للسيرفرات مع الذكاء الاصطناعي والعرض ثلاثي الأبعاد 3D
 
-An end-to-end, privacy-focused, AI-powered system designed to analyze, architect, and visualize enterprise server infrastructures locally. Powered by high-performance local Large Language Models (**Qwen2.5-Coder:7b** / **Llama3.1:8b** via Ollama), this platform transforms complex organizational requirements into actionable, dynamic hardware specs, network topology diagrams, security protocols, and interactive 3D rack visualizations.
-
----
-
-## 🌟 Key Features
-
-- **🔒 100% On-Premise & Private AI**: Runs entirely offline via Ollama. No sensitive organizational data or network topologies ever leave your local network.
-- **⚡ Dynamic Context-Aware Architecture Engine**: Unlike static templates, the backend dynamically calculates hardware specifications (CPU cores, RAM, NVMe storage) and security tiers based on company size, employee count, sensitivity level, and budget constraints.
-- **📊 Real-time Mermaid.js Topologies**: Automatically generates interactive, custom network diagrams reflecting DMZs, Load Balancers, WAFs, and isolated database clusters.
-- **🎮 Interactive 3D Server Viewer**: Built with **Three.js** / React Three Fiber to visualize server racks, status LEDs, and component positioning directly in the browser.
-- **🛰️ Automated Infrastructure & Network Scanning**: Integrated IP geolocation lookup and network port scanning services to assess active endpoints.
-- **🛡️ Robust AI Output Parsing**: Features multi-stage JSON regex sanitation and fallback mechanisms to ensure 100% uptime and prevent frontend parsing crashes.
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Ollama-AI-blue?style=for-the-badge" alt="Ollama" />
+  <img src="https://img.shields.io/badge/Three.js-3D-black?style=for-the-badge&logo=three.js" alt="Three.js" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+## 📖 نبذة عن المشروع | Overview
 
-### **Frontend**
-- **Framework**: [Next.js](https://nextjs.org/) (React, TypeScript)
-- **Styling**: Tailwind CSS
-- **Visualization**: [Three.js](https://threejs.org/) (3D Graphics), [Mermaid.js](https://mermaid.js.org/) (Diagrams)
+**Server Infrastructure Architect Consultant** هي منصة تفاعلية متكاملة لتقديم الاستشارات الفنية والهندسية لبناء وتصميم السيرفرات والبنية التحتية للمنشآت والشركات. 
 
-### **Backend**
-- **Framework**: [FastAPI](https://fastapi.tiangolo.com/) (Python 3.10+)
-- **AI / LLM Engine**: [Ollama](https://ollama.com/) running `qwen2.5-coder:7b` & `llama3.1:8b`
-- **Networking**: `requests`, Python Socket API, IP Geolocation Services
+تدمج المنصة بين **الفحص الميداني الآلي (Automated Reconnaissance)** واستدعاء **نماذج الذكاء الاصطناعي المحلية (Ollama AI)** لتقديم توصيات دقيقة للعتاد (Hardware)، جدران الحماية والأمان (Security)، وإنشاء مخططات هيكلية تفاعلية (Mermaid Topology Diagrams) مع عرض نماذج ثلاثية الأبعاد (3D Visualization).
 
 ---
 
-## 📐 System Architecture
+## ✨ المميزات الرئيسية | Key Features
 
-```mermaid
-graph TD
-    User([Client / Web Frontend]) -->|HTTP / JSON Requests| API[FastAPI Backend - main.py]
-    
-    subgraph Local Server Environment
-        API -->|Network Ports Scan| NetScanner[Network Scanner Service]
-        API -->|IP Lookup| GeoService[IP Geolocation Service]
-        API -->|Custom System Prompt| Ollama[Ollama Local AI Runner]
-        
-        Ollama -->|LLM Inference| Model[qwen2.5-coder:7b / llama3.1:8b]
-        Model -->|Structured JSON Response| Ollama
-    end
-    
-    API -->|JSON Sanitization & Dynamic Diagram Generation| API
-    API -->|Dynamic Spec + Mermaid Code + Geo Info| User
-    
-    subgraph Frontend Rendering
-        User --> Render3D[Three.js 3D Rack Viewer]
-        User --> RenderMermaid[Mermaid.js Topology Renderer]
-    end
-
-
+1. **🌐 geo-IP & Network Reconnaissance:** تحليل أوتوماتيكي لعنوان الـ IP المستهدف وتحديد الموقع وتتبع أداء الاتصال (Ping & Bandwidth speed).
+2. **🛡️ Port & Security Scanning:** فحص المنافذ المفتوحة والمغلقة واستخراج تقييم أمني مبدئي.
+3. **🤖 Local AI Engine Integration:** معالجة البيانات عبر نموذج ذكاء اصطناعي محلي (Ollama) تولّد استجابات هيكلية دقيقة بصيغة JSON.
+4. **📊 Dynamic Topology Charting:** توليد رسم بياني تفاعلي لهيكلية الشبكة والسيرفرات باستخدام مكتبة **Mermaid.js**.
+5. **🧊 Interactive 3D Server Viewer:** عرض ثلاثي الأبعاد لكابينة السيرفر (Server Rack) والمكونات باستخدام **Three.js / React Three Fiber**.
+6. **⚡ Modern Tech Stack:** واجهة مستخدم سريعة وسلسة مبنية بـ **Next.js** وخلفية خفيفة وعالية الأداء بـ **FastAPI**.
 
 ---
-🚀 Quick Start Guide
-Prerequisites
-Node.js (v18+)
 
-Python (v3.10+)
+## 🏗️ معماريّة النظام | Architecture & Workflow
+[ Frontend (Next.js 14) ]
+│
+│  (POST /api/consult)
+▼
+[ Backend Engine (FastAPI) ]
+│
+├─► 1. Location & Network Scanner (GeoIP / Port Scan)
+├─► 2. Ollama AI Engine (Local LLM System Prompting)
+└─► 3. Data Cleaning & Sanitization (Regex & JSON Repair)
+│
+▼
+[ Clean Structured Response (JSON) ]
+│
+├─► Render Hardware Specs & Security Measures
+├─► Render Interactive 3D Server Specs (Three.js)
+└─► Render Dynamic Architecture Chart (Mermaid.js)
+---
 
-Ollama installed on your machine.
+## 🛠️ التقنيات المستخدمة | Tech Stack
 
-1. Model Setup (Ollama)
-Ensure Ollama is running and pull the recommended model:
+### **Frontend (الواجهة الأمامية):**
+* **Framework:** Next.js 14 / React 18
+* **Styling:** Tailwind CSS / Lucide React Icons
+* **3D Rendering:** Three.js / @react-three/fiber
+* **Diagrams:** Mermaid.js
 
-Bash
-ollama pull qwen2.5-coder:7b
-# OR
-ollama pull llama3.1:8b
-2. Backend Setup
-Bash
-# Navigate to backend directory
+### **Backend (الخلفية):**
+* **Framework:** Python FastAPI
+* **Server:** Uvicorn
+* **AI Provider:** Ollama (Local LLM Engine)
+* **Libraries:** Requests, PyDantic, CORS Middleware
+
+---
+
+## 🚀 طريقة التشغيل والتثبيت | Getting Started
+
+### **1. المتطلبات الأساسية (Prerequisites):**
+* **Node.js** (v18+)
+* **Python** (v3.10+)
+* **Ollama** مثبت ومُفعل محلياً مع نموذج (مثل `llama3` أو `mistral`).
+
+---
+
+### **2. إعداد وتشغيل الخلفية (Backend Setup):**
+
+```bash
+# الانتقال لمجلد الباك اند
 cd backend
 
-# Create and activate Python virtual environment
+# إنشاء البيئة الافتراضية
 python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On Linux/macOS:
+
+# تفعيل البيئة (Linux/macOS)
 source venv/bin/activate
+# أو على Windows:
+# venv\Scripts\activate
 
-# Install dependencies
-pip install -r requirements.txt
+# تثبيت الحزم المطلوبة
+pip install fastapi uvicorn requests
 
-# Run FastAPI server
-uvicorn app.main:app --reload --port 8000
-3. Frontend Setup
-Bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Run Next.js development server
-npm run dev
-Open http://localhost:3000 in your browser to launch the consultant interface.
----
-graph TD
-    %% Frontend Layer
-    subgraph Frontend_Tier ["📱 Front-End Tier (Next.js / React / TypeScript)"]
-        UI["🖥️ User Interface (Dashboard & Forms)"]
-        FormInput["📝 Input Data (IP, Company, Employees, Budget)"]
-        Viewer3D["🎮 Three.js 3D Server Viewer"]
-        MermaidRender["📊 Mermaid.js Topology Renderer"]
-    end
-
-    %% Backend Layer
-    subgraph Backend_Tier ["⚙️ Back-End Tier (FastAPI / Python)"]
-        API["🔌 FastAPI Engine (main.py)"]
-        GeoService["🛰️ Location Service (IP Geolocation)"]
-        NetScanner["🛡️ Network Scanner (Socket Port Scan)"]
-        PromptBuilder["📝 System Prompt Builder"]
-        Cleaner["🧹 Clean JSON & Regex Sanitizer"]
-        FallbackEngine["⚡ Dynamic Fallback Logic"]
-    end
-
-    %% AI Engine Layer
-    subgraph AI_Tier ["🤖 Local AI Engine (Ollama Local Runtime)"]
-        OllamaServer["⚙️ Ollama Local Server (Port 11434)"]
-        QwenModel["🧠 qwen2.5-coder:7b / llama3.1:8b"]
-    end
-
-    %% Data Flow Connections
-    UI -->|1. User Inputs| FormInput
-    FormInput -->|2. POST /api/consult| API
-    
-    API -->|3. Fetch IP Data| GeoService
-    API -->|4. Scan Open Ports| NetScanner
-    
-    API -->|5. Build Prompt| PromptBuilder
-    PromptBuilder -->|6. JSON Request| OllamaServer
-    OllamaServer -->|7. Inference| QwenModel
-    QwenModel -->|8. Raw Response| OllamaServer
-    OllamaServer -->|9. Output Text| Cleaner
-    
-    Cleaner -->|10. Validated JSON| API
-    API -.->|If Error / Fallback| FallbackEngine
-    
-    API -->|11. Final Structured Data| UI
-    UI -->|12. Render Specs & Data| Viewer3D
-    UI -->|13. Draw Topology Chart| MermaidRender
+# تشغيل خادم الباك اند
+uvicorn main:app --reload --port 8000
+----
+├── backend/
+│   ├── main.py              # تطبيق FastAPI الرئيسي وإعدادات CORS ومعالجة AI
+│   └── requirements.txt     # متطلبات البايثون
+│
+└── frontend/
+    ├── src/
+    │   ├── app/
+    │   │   └── page.tsx      # الواجهة الرئيسية وتجميع المكونات
+    │   ├── components/
+    │   │   ├── Server3DView.tsx    # مكون العرض ثلاثي الأبعاد (Three.js)
+    │   │   └── MermaidDiagram.tsx  # مكون الرسم البياني (Mermaid)
+    └── package.json
 ----
