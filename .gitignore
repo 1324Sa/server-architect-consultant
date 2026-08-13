@@ -1,0 +1,17 @@
+# Python / FastAPI
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Next.js / Node.js
+node_modules/
+.next/
+out/
+build/
+*.log
+
+# IDEs
+.vscode/
+.idea/
